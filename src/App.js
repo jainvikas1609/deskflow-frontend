@@ -484,8 +484,8 @@ function TicketDetail({id,onClose,agents,categories,customers,currentUser,onRefr
             {/* Status — only show valid next transitions (Point 6) */}
             <div style={{background:B.bg,borderRadius:8,padding:'9px 12px'}}>
               <div style={{fontSize:11,color:B.light,marginBottom:4,fontWeight:500}}>Status</div>
-              <Sel style={{fontSize:12,padding:'4px 8px'}} value={ticket.status} onChange={e=>changeStatus(e.target.value)}>
-                <option value={ticket.status}>{ticket.status} (current)</option>
+              <Sel style={{fontSize:12,padding:'4px 8px'}} value="" onChange={e=>{if(e.target.value)changeStatus(e.target.value);}}>
+                <option value="" disabled>Change status (now: {ticket.status})</option>
                 {validNext.map(s=><option key={s} value={s}>{s}</option>)}
               </Sel>
               {statusErr&&<div style={{fontSize:11,color:'#E53E3E',marginTop:4,background:'#FFF5F5',padding:'4px 8px',borderRadius:5}}>{statusErr}</div>}
@@ -999,7 +999,7 @@ function AIToolsPage(){
             <div key={t.name} style={{border:`1px solid ${B.border}`,borderRadius:10,padding:14,background:B.bg}}>
               <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',marginBottom:8}}>
                 <div style={{fontSize:14,fontWeight:700,color:B.navy}}>{t.name}</div>
-                <div style={{display:'flex',gap:6'}}>
+                <div style={{display:'flex',gap:6}}>
                   <span style={{fontSize:10,background:t.free?'#F0FFF4':'#EBF8FF',color:t.free?'#276749':'#1a6b8a',padding:'2px 8px',borderRadius:10,fontWeight:600}}>{t.free?'Free':'Paid'}</span>
                   <span style={{fontSize:10,background:'#FAF5FF',color:'#553C9A',padding:'2px 8px',borderRadius:10,fontWeight:600}}>{t.type}</span>
                 </div>
